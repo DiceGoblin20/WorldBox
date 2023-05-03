@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5epa2prkyhts"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_0epe3"]
+[ext_resource type="Script" path="res://TileMap.gd" id="1_7hbff"]
+[ext_resource type="Texture2D" uid="uid://dciioxwdf4dn6" path="res://Worldbox Tilemap-export.png" id="2_2nstf"]
+[ext_resource type="Texture2D" uid="uid://c1jhixfqlek5y" path="res://Worldbox Tilemap-Updatedt.png" id="3_xnvv3"]
+[ext_resource type="Script" path="res://Camera.gd" id="4_71aqq"]
+[ext_resource type="Texture2D" uid="uid://dw7d4gjx7obfu" path="res://Snow.png" id="6_w4ur8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2npy"]
+texture = ExtResource("3_xnvv3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r6um3"]
+texture = ExtResource("2_2nstf")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_spdp2"]
+sources/1 = SubResource("TileSetAtlasSource_r6um3")
+sources/0 = SubResource("TileSetAtlasSource_f2npy")
+
+[node name="WorldGenerator" type="Node2D"]
+script = ExtResource("1_0epe3")
+width = 260
+nightSpeed = 20
+moct = 5
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_spdp2")
+format = 2
+script = ExtResource("1_7hbff")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.155, 0.155)
+script = ExtResource("4_71aqq")
+zoomSpeed = 0.3
+
+[node name="NightA" type="Sprite2D" parent="."]
+modulate = Color(0, 0.211765, 0.458824, 0.509804)
+position = Vector2(5200, 2080)
+scale = Vector2(65, 130)
+texture = ExtResource("6_w4ur8")
+
+[node name="NightB" type="Sprite2D" parent="."]
+modulate = Color(0, 0.211765, 0.458824, 0.509804)
+position = Vector2(9360, 2080)
+scale = Vector2(65, 130)
+texture = ExtResource("6_w4ur8")
+
+[node name="SeedBackground" type="ColorRect" parent="."]
+offset_right = 581.0
+offset_bottom = 137.0
+color = Color(0, 0, 0, 0.721569)
+
+[node name="Seed" type="Label" parent="."]
+offset_right = 436.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 100
+
+[connection signal="positionCamera" from="." to="Camera" method="_on_world_generator_position_camera"]

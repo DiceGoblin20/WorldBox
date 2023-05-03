@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://baneigvc88uxn"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_1s1ei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4etb"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_1s1ei")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x4etb")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.1, 0.1)
